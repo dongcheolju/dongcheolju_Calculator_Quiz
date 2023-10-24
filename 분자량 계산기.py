@@ -28,4 +28,4 @@ for element, count in elements:
 
 # 결과 출력
 print(f"화학식: {chemical_formula}")
-print(f"총 분자량(혹은 원자량): {total_atomic_mass} g/mol")
+print(f"총 분자량(혹은 원자량): {total_atomic_mass} g/mol") #화학식이 아닌 원자만 입력했을 경우 원자량으로 표기
