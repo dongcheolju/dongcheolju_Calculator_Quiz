@@ -1,13 +1,13 @@
-import pandas as pd
+import pandas as pd #pandas 라이브로리 import
 import re  # re 모듈을 import
 
 # CSV 파일 경로
-csv_file = '/Users/judongcheol/Library/Mobile Documents/com~apple~CloudDocs/대학교/2학년 2학기/프로그래밍 2/코딩 파일/dongcheolju_Calculator_Quiz/Symbol,Atomic Weight.csv'
+Symbol_Atomic_Weight = '/Users/judongcheol/Library/Mobile Documents/com~apple~CloudDocs/대학교/2학년 2학기/프로그래밍 2/코딩 파일/dongcheolju_Calculator_Quiz/Symbol,Atomic Weight.csv'
 
-# CSV 파일 읽기
-df = pd.read_csv(csv_file)
+# CSV 파일 데이터 프레임에 읽기
+df = pd.read_csv(Symbol_Atomic_Weight)
 
-# 화학식 입력 (예: 물 - H2O)
+# 화학식 입력 받기
 chemical_formula = input("화학식을 입력하세요 : ")
 
 # 화학식을 원소와 개수로 분리
