@@ -13,7 +13,7 @@ chemical_formula = input("화학식을 입력하세요 : ")
 # 화학식을 원소와 개수로 분리
 elements = re.findall(r'([A-Z][a-z]*)(\d*)', chemical_formula)
 
-# 원자량 계산
+# 분자량 계산
 total_atomic_mass = 0.0
 for element, count in elements:
     element_data = df[df['Symbol'] == element]
@@ -28,4 +28,4 @@ for element, count in elements:
 
 # 결과 출력
 print(f"화학식: {chemical_formula}")
-print(f"총 원자량: {total_atomic_mass} g/mol")
+print(f"총 분자량(혹은 원자량): {total_atomic_mass} g/mol")
