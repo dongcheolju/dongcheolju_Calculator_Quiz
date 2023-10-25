@@ -14,9 +14,9 @@ chemical_formula = input("화학식을 입력하세요 : ")
 elements = re.findall(r'([A-Z][a-z]*)(\d*)', chemical_formula)
 
 # 분자량 계산
-total_atomic_mass = 0.0
+total_atomic_mass = 0.0 # 초기 분자량 값 0 부여
 for element, count in elements:
-    element_data = df[df['Symbol'] == element]
+    element_data = df[df['Symbol'] == element] # DF의 Symbol행에에서 element와 일치하는 항목을 element_data에 넣기
     if not element_data.empty:
         atomic_mass = element_data.iloc[0]['AtomicMass']
         count = int(count) if count else 1  # 정수로 변환, 기본값은 1
