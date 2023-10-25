@@ -7,25 +7,29 @@ Symbol_Atomic_Weight = '/Users/judongcheol/Library/Mobile Documents/com~apple~Cl
 # CSV 파일 데이터 프레임에 읽기
 df = pd.read_csv(Symbol_Atomic_Weight)
 
+def calculate_molecular_weight(chemical_formula):
+    # 화학식을 원소와 개수로 분리
+    elements = re.findall(r'([A-Z][a-z]*)(\d*)', chemical_formula)
+    # 초기 분자량 값 0 부여
+    total_atomic_mass = 0.0
+
+    for element, count in elements:
+        element_data = df[df['Symbol'] == element]
+        if not element_data.empty:
+            atomic_mass = element_data.iloc[0]['AtomicMass']
+            count = int(count) if count else 1
+            atomic_mass = float(atomic_mass)
+            atomic_mass *= count
+            total_atomic_mass += atomic_mass
+        else:
+            print(f"{element}를 찾을 수 없습니다.")
+
+    return total_atomic_mass
+
 # 화학식 입력 받기
 chemical_formula = input("화학식을 입력하세요 : ")
 
-# 화학식을 원소와 개수로 분리
-elements = re.findall(r'([A-Z][a-z]*)(\d*)', chemical_formula)
-
-# 분자량 계산
-total_atomic_mass = 0.0 # 초기 분자량 값 0 부여
-for element, count in elements:
-    element_data = df[df['Symbol'] == element] # DF의 Symbol행에에서 element와 일치하는 항목을 element_data에 넣기
-    if not element_data.empty:
-        atomic_mass = element_data.iloc[0]['AtomicMass']
-        count = int(count) if count else 1  # 정수로 변환, 기본값은 1
-        atomic_mass = float(atomic_mass)  # 원자량을 숫자로 변환
-        atomic_mass *= count
-        total_atomic_mass += atomic_mass
-    else:
-        print(f"{element}를 찾을 수 없습니다.")
-
-# 결과 출력
+# Calculate and print the result
+result = calculate_molecular_weight(chemical_formula)
 print(f"화학식: {chemical_formula}")
-print(f"총 분자량(혹은 원자량): {total_atomic_mass} g/mol") #화학식이 아닌 원자만 입력했을 경우 원자량으로 표기
+print(f"총 분자량(혹은 원자량): {result} g/mol")
