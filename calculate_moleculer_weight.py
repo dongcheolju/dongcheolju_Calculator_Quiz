@@ -16,7 +16,7 @@ def calculate_molecular_weight(chemical_formula):
     #리스트에 있는 각 원소와 그 개수에 대해 반복
     for element, count in elements:
         #원소를 데이터 프레임에서 찾기
-        element_data = df[df['Symbol'] == element] #df에서 해당 원소와 일치하는 행을 찾는 조건
+        element_data = df[df['Symbol'] == element]              #df에서 해당 원소와 일치하는 행을 찾는 조건
         if not element_data.empty:                              #원소가 df에서 찾아졌는지 확인
             atomic_mass = element_data.iloc[0]['AtomicMass']    #원자량 가져오기
             count = int(count) if count else 1                  #count를 정수로 저장하되, 비어있을 경우 1로 저장(0일 경우 값이 0이 됨)
@@ -26,8 +26,8 @@ def calculate_molecular_weight(chemical_formula):
         else:
             print(f"{element}를 찾을 수 없습니다.")
 
-    #return total_atomic_mass, elements
-    return element_data
+    #return total_atomic_mass
+    return total_atomic_mass
 
 
 # 화학식 입력 받기
@@ -35,6 +35,5 @@ chemical_formula = input("화학식을 입력하세요 : ")
 
 # 계산기 작동
 result = calculate_molecular_weight(chemical_formula)
-#print(f"화학식: {chemical_formula}")
-#print(f"총 분자량(혹은 원자량): {result} g/mol")
-print(result)
+print(f"화학식: {chemical_formula}")
+print(f"총 분자량(혹은 원자량): {result} g/mol")
